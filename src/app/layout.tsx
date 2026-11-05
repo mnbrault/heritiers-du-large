@@ -1,14 +1,27 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono, Fraunces, Source_Sans_3 } from "next/font/google";
+import localFont from "next/font/local";
+import { JetBrains_Mono, Source_Sans_3 } from "next/font/google";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SITE, WP } from "@/lib/site";
 import "./globals.css";
 
-const display = Fraunces({
+const display = localFont({
+  src: [
+    {
+      path: "../fonts/archivo-black-latin-400-normal.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/archivo-black-latin-ext-400-normal.woff2",
+      weight: "400",
+      style: "normal",
+    },
+  ],
   variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  display: "swap",
+  fallback: ["Arial Black", "Impact", "sans-serif"],
 });
 
 const body = Source_Sans_3({

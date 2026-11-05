@@ -270,22 +270,46 @@ export default function BertrandPage() {
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {[
-            "clipboard-8.jpeg",
-            "clipboard-13.jpeg",
-            "clipboard-7.jpeg",
-            "clipboard-40.jpeg",
-            "clipboard-12.jpeg",
-            "clipboard-7.png",
-          ].map((file) => (
+            {
+              file: "clipboard-8.jpeg",
+              alt: "Bertrand Castelnérac en entretien",
+              position: "object-[30%_18%]",
+            },
+            {
+              file: "clipboard-13.jpeg",
+              alt: "Bertrand Castelnérac interviewé",
+              position: "object-[32%_28%]",
+            },
+            {
+              file: "clipboard-7.jpeg",
+              alt: "Bertrand Castelnérac en conférence",
+              position: "object-[52%_32%]",
+            },
+            {
+              file: "clipboard-40.jpeg",
+              alt: "Bertrand Castelnérac à bord",
+              position: "object-[42%_12%]",
+            },
+            {
+              file: "clipboard-12.jpeg",
+              alt: "Bertrand Castelnérac sur un voilier",
+              position: "object-[48%_18%]",
+            },
+            {
+              file: "clipboard-7.png",
+              alt: "Portrait de Bertrand Castelnérac en mer",
+              position: "object-[22%_22%]",
+            },
+          ].map((photo) => (
             <div
-              key={file}
-              className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-slate-200"
+              key={photo.file}
+              className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-slate-200"
             >
               <Image
-                src={`${WP}/2026/10/${file}`}
-                alt="Rencontres et transmission"
+                src={`${WP}/2026/10/${photo.file}`}
+                alt={photo.alt}
                 fill
-                className="object-cover"
+                className={`object-cover ${photo.position}`}
                 sizes="(max-width: 1024px) 50vw, 33vw"
               />
             </div>
