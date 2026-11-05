@@ -2,19 +2,19 @@ import type { NextConfig } from "next";
 
 const isGithubPages = process.env.GITHUB_PAGES === "true";
 const repoName = "heritiers-du-large";
+const basePath = isGithubPages ? `/${repoName}` : "";
 
 const nextConfig: NextConfig = {
   output: "export",
   trailingSlash: true,
+  basePath: basePath || undefined,
+  assetPrefix: basePath ? `${basePath}/` : undefined,
+  env: {
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   turbopack: {
     root: __dirname,
   },
-  ...(isGithubPages
-    ? {
-        basePath: `/${repoName}`,
-        assetPrefix: `/${repoName}/`,
-      }
-    : {}),
   images: {
     unoptimized: true,
     remotePatterns: [

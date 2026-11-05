@@ -330,6 +330,19 @@ export const StaggeredMenu = ({
     animateColor(target)
   }, [playOpen, playClose, animateIcon, animateColor, onMenuOpen, onMenuClose])
 
+  const withBasePath = useCallback((link: string) => {
+    if (!link.startsWith('/') || link.startsWith('//')) return link
+    const base = process.env.NEXT_PUBLIC_BASE_PATH || ''
+    let path =
+      !base || link === base || link.startsWith(`${base}/`)
+        ? link
+        : `${base}${link}`
+    if (!path.endsWith('/') && !path.includes('?') && !path.includes('#')) {
+      path = `${path}/`
+    }
+    return path
+  }, [])
+
   const handleItemClick = useCallback(
     (e: React.MouseEvent, link: string) => {
       const isInternal = link.startsWith('/') && !link.startsWith('//')
@@ -338,14 +351,15 @@ export const StaggeredMenu = ({
         e.stopPropagation()
         onItemClick?.()
         closeMenu()
-        const url = link.startsWith('http') ? link : `${window.location.origin}${link}`
+        const path = withBasePath(link)
+        const url = `${window.location.origin}${path}`
         setTimeout(() => { window.location.assign(url) }, 0)
       } else {
         onItemClick?.()
         closeMenu()
       }
     },
-    [onItemClick, closeMenu]
+    [onItemClick, closeMenu, withBasePath]
   )
 
   React.useEffect(() => {
@@ -392,7 +406,19 @@ export const StaggeredMenu = ({
       >
         <div className="sm-header-top">
           <div className="sm-header-left">
-            <a href={logoHref} className="sm-logo" aria-label={logoText || 'Accueil'} onClick={logoHref === '#' ? (e) => { e.preventDefault(); closeMenu(); } : (e) => { e.preventDefault(); e.stopPropagation(); closeMenu(); const url = `${window.location.origin}${logoHref}`; setTimeout(() => window.location.assign(url), 0); }}>
+            <a
+              href={logoHref === '#' ? '#' : withBasePath(logoHref)}
+              className="sm-logo"
+              aria-label={logoText || 'Accueil'}
+              onClick={
+                logoHref === '#'
+                  ? (e) => {
+                      e.preventDefault()
+                      closeMenu()
+                    }
+                  : (e) => handleItemClick(e, logoHref)
+              }
+            >
               {logoText ? (
                 <span className="sm-logo-text">{logoText}</span>
               ) : logoUrl ? (
@@ -441,7 +467,7 @@ export const StaggeredMenu = ({
                 <li className="sm-panel-itemWrap" key={it.label + idx}>
                   <a
                     className="sm-panel-item"
-                    href={it.link}
+                    href={withBasePath(it.link)}
                     aria-label={it.ariaLabel ?? it.label}
                     data-index={displayItemNumbering ? idx + 1 : undefined}
                     onClick={(e) => handleItemClick(e, it.link)}
