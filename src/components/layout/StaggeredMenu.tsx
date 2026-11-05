@@ -367,7 +367,7 @@ export const StaggeredMenu = ({
   }, [closeOnClickAway, open, closeMenu])
 
   const raw = colors && colors.length ? colors.slice(0, 4) : ['#1e1e22', '#35353c']
-  let arr = [...raw]
+  const arr = [...raw]
   if (arr.length >= 3) {
     const mid = Math.floor(arr.length / 2)
     arr.splice(mid, 1)
@@ -396,6 +396,8 @@ export const StaggeredMenu = ({
               {logoText ? (
                 <span className="sm-logo-text">{logoText}</span>
               ) : logoUrl ? (
+                // Decorative brand mark; kept as <img> to match the Oïkos menu behavior.
+                // eslint-disable-next-line @next/next/no-img-element
                 <img
                   src={logoUrl}
                   alt={logoText || 'Logo'}
