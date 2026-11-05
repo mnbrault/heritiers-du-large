@@ -4,7 +4,11 @@ Site vitrine pour Bertrand Castelnérac — conseil, communication d'entreprise 
 
 Design inspiré d’Oïkos (containers `max-w-7xl`, blocs / cartes arrondies, palette océan, sur-titres mono type journal de bord).
 
-## Démarrer
+## Démo en ligne
+
+**https://mnbrault.github.io/heritiers-du-large/**
+
+## Démarrer en local
 
 ```bash
 npm install
@@ -23,3 +27,7 @@ Ouvrir [http://localhost:3000](http://localhost:3000).
 - `/bertrand` Bertrand
 
 Les images sont chargées depuis le WordPress actuel (et Wikimedia pour deux crédits CC).
+
+## Déploiement
+
+Chaque push sur `main` publie le site en static export sur GitHub Pages (workflow `.github/workflows/deploy-pages.yml`).
