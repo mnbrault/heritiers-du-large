@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
-import { Block } from "@/components/ui/Block";
 import { ContactLine } from "@/components/ui/ContactLine";
 import { mailto, WP } from "@/lib/site";
 
@@ -62,6 +61,18 @@ const sponsoring = [
   },
 ];
 
+const bullets = [
+  "Navigations pour vos équipes, vos clients et vos invités",
+  "Découverte de la voile ou initiation à la régate",
+  "En semaine ou le week-end",
+];
+
+const pilotage = [
+  "Cibles commerciales et publics à mobiliser",
+  "Calendrier de contenus et d'événements",
+  "Pour moins de 200 K€, un pack complet marketing / navigations / publicité",
+];
+
 export default function OffresPage() {
   return (
     <>
@@ -81,41 +92,46 @@ export default function OffresPage() {
         }}
       />
 
-      <Section className="bg-white">
+      <Section className="bg-surface">
         <SectionHeader
           eyebrow="REPÈRE 01 // PACKS"
           title="Packs communication & activation"
           description="Des packs combinables, construits autour de vos objectifs commerciaux et de communication."
         />
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="rule-list">
           {packs.map((pack) => (
-            <Block key={pack.n}>
-              <p className="eyebrow mb-3 text-ocean-accent">{pack.n}</p>
-              <h3 className="font-display mb-4 text-2xl font-semibold text-slate-900">
-                {pack.title}
-              </h3>
-              <ul className="space-y-2 text-slate-600">
-                {pack.items.map((item) => (
-                  <li key={item} className="leading-relaxed">
-                    · {item}
-                  </li>
-                ))}
-              </ul>
-            </Block>
+            <div
+              key={pack.n}
+              className="grid gap-3 py-8 sm:grid-cols-[4rem_1fr] sm:gap-8"
+            >
+              <span className="eyebrow text-ocean-teal">{pack.n}</span>
+              <div>
+                <h3 className="font-display text-2xl text-ocean-navy">
+                  {pack.title}
+                </h3>
+                <ul className="mt-4 space-y-2 text-text-secondary">
+                  {pack.items.map((item) => (
+                    <li key={item} className="leading-relaxed">
+                      · {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           ))}
         </div>
       </Section>
 
-      <Section className="bg-gradient-to-b from-slate-50 to-white">
+      <Section className="bg-ecume">
         <SectionHeader
           eyebrow="REPÈRE 02 // NAVIGATIONS"
           title="Nos offres de navigation"
           description="Novice ou déjà initié, bienvenue à bord !"
         />
 
-        <div className="grid gap-8 lg:grid-cols-2">
-          <Block hover={false} className="overflow-hidden !p-0">
-            <div className="relative aspect-[16/10]">
+        <div className="grid gap-10 lg:grid-cols-2">
+          <figure>
+            <div className="relative aspect-[16/10] overflow-hidden bg-ocean-navy">
               <Image
                 src={`${WP}/2026/10/clipboard-11.jpeg`}
                 alt="Figaro 3 en navigation"
@@ -124,18 +140,16 @@ export default function OffresPage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            <div className="p-6 sm:p-8">
-              <p className="eyebrow mb-2 text-ocean-accent">
-                FIGARO 3 · LA TRINITÉ-SUR-MER
-              </p>
-              <h3 className="font-display text-2xl font-semibold text-slate-900">
+            <figcaption className="mt-4">
+              <p className="eyebrow mb-2">FIGARO 3 · LA TRINITÉ-SUR-MER</p>
+              <h3 className="font-display text-2xl text-ocean-navy">
                 Performance : initiation à la régate
               </h3>
-            </div>
-          </Block>
+            </figcaption>
+          </figure>
 
-          <Block hover={false} className="overflow-hidden !p-0">
-            <div className="relative aspect-[16/10]">
+          <figure>
+            <div className="relative aspect-[16/10] overflow-hidden bg-ocean-navy">
               <Image
                 src={`${WP}/2026/10/clipboard-4.jpeg`}
                 alt="Océanis 31 Carpe Diem"
@@ -144,60 +158,54 @@ export default function OffresPage() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            <div className="p-6 sm:p-8">
-              <p className="eyebrow mb-2 text-ocean-accent">
-                OCÉANIS 31 · LORIENT
-              </p>
-              <h3 className="font-display text-2xl font-semibold text-slate-900">
+            <figcaption className="mt-4">
+              <p className="eyebrow mb-2">OCÉANIS 31 · LORIENT</p>
+              <h3 className="font-display text-2xl text-ocean-navy">
                 Découverte de la voile — « Carpe Diem »
               </h3>
-            </div>
-          </Block>
+            </figcaption>
+          </figure>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {[
-            "Navigations pour vos équipes, vos clients et vos invités",
-            "Découverte de la voile ou initiation à la régate",
-            "En semaine ou le week-end",
-          ].map((item) => (
-            <Block key={item} tone="soft">
-              <p className="text-slate-700">{item}</p>
-            </Block>
+        <ul className="rule-list mt-12 max-w-2xl">
+          {bullets.map((item) => (
+            <li key={item} className="py-5 text-lg text-ocean-navy">
+              {item}
+            </li>
           ))}
-        </div>
+        </ul>
 
-        <p className="mt-8 text-sm font-medium text-slate-500">
+        <p className="mt-8 text-sm text-text-muted">
           Formules sur devis · Tarifs spéciaux sur demande
         </p>
       </Section>
 
-      <Section className="bg-white">
+      <Section className="bg-surface">
         <SectionHeader
           eyebrow="REPÈRE 03 // PUBLICITÉ"
           title="Publicité & sponsoring à bord"
         />
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="rule-list">
           {sponsoring.map((pack) => (
-            <Block key={pack.title} tone="ocean">
-              <h3 className="font-display mb-4 text-xl font-semibold text-slate-900">
+            <div key={pack.title} className="py-8">
+              <h3 className="font-display text-xl text-ocean-navy">
                 {pack.title}
               </h3>
-              <ul className="space-y-2 text-slate-600">
+              <ul className="mt-3 space-y-2 text-text-secondary">
                 {pack.items.map((item) => (
                   <li key={item}>· {item}</li>
                 ))}
               </ul>
-            </Block>
+            </div>
           ))}
         </div>
-        <p className="mt-6 text-sm leading-relaxed text-slate-600">
+        <p className="mt-6 max-w-2xl text-sm leading-relaxed text-text-secondary">
           Un quart d&apos;un côté de coque est réservé à{" "}
           <a
             href="https://www.orlabay.fr/page/3642589-accueil"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-ocean-accent hover:underline"
+            className="font-semibold text-ocean-teal hover:underline"
           >
             ORLABAY
           </a>{" "}
@@ -206,29 +214,28 @@ export default function OffresPage() {
         </p>
       </Section>
 
-      <Section className="bg-slate-50">
+      <Section className="bg-ecume">
         <SectionHeader
           eyebrow="REPÈRE 04 // PILOTAGE"
           title="Un partenariat piloté autour de vos objectifs"
         />
-        <div className="grid gap-5 md:grid-cols-3">
-          {[
-            "Cibles commerciales et publics à mobiliser",
-            "Calendrier de contenus et d'événements",
-            "Pour moins de 200 K€, un pack complet marketing / navigations / publicité",
-          ].map((item, i) => (
-            <Block key={item}>
-              <p className="eyebrow mb-3 text-ocean-accent">
+        <ol className="rule-list max-w-2xl">
+          {pilotage.map((item, i) => (
+            <li
+              key={item}
+              className="grid grid-cols-[3.5rem_1fr] gap-4 py-6 sm:gap-6"
+            >
+              <span className="eyebrow pt-1 text-ocean-teal">
                 {String(i + 1).padStart(2, "0")}
-              </p>
-              <p className="text-slate-800 leading-relaxed">{item}</p>
-            </Block>
+              </span>
+              <p className="text-lg text-ocean-navy leading-relaxed">{item}</p>
+            </li>
           ))}
-        </div>
+        </ol>
         <p className="mt-8">
           <Link
             href="/corporatif"
-            className="font-semibold text-ocean-accent hover:underline"
+            className="font-semibold text-ocean-teal hover:underline"
           >
             Voir aussi les formats corporatifs →
           </Link>

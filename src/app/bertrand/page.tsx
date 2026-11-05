@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Section, SectionHeader } from "@/components/ui/Section";
-import { Block } from "@/components/ui/Block";
 import { Button } from "@/components/ui/Button";
 import { ContactLine } from "@/components/ui/ContactLine";
 import { mailto, WP } from "@/lib/site";
@@ -49,7 +48,7 @@ function Gallery({
       {images.map((img) => (
         <div
           key={img.src}
-          className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-slate-200"
+          className="relative aspect-[4/3] overflow-hidden bg-ocean-navy"
         >
           <Image
             src={img.src}
@@ -67,13 +66,13 @@ function Gallery({
 export default function BertrandPage() {
   return (
     <>
-      <section className="border-b border-slate-200 bg-white lg:grid lg:min-h-screen lg:grid-cols-2">
-        <div className="flex flex-col justify-center px-6 pb-14 pt-32 sm:px-8 sm:pb-16 sm:pt-36 lg:px-12 xl:px-16">
+      <section className="border-b border-border bg-surface lg:grid lg:min-h-screen lg:grid-cols-2">
+        <div className="flex flex-col justify-center px-6 pb-14 pt-28 sm:px-8 sm:pb-16 sm:pt-32 lg:px-12 xl:px-16">
           <div className="max-w-xl">
-            <h1 className="font-display text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+            <h1 className="font-display text-4xl tracking-tight text-ocean-navy sm:text-5xl lg:text-6xl">
               Bertrand Castelnérac
             </h1>
-            <p className="mt-5 text-lg leading-relaxed text-slate-600 sm:text-xl">
+            <p className="mt-5 text-lg leading-relaxed text-text-secondary sm:text-xl">
               Skipper professionnel, entrepreneur et conseil auprès des
               entreprises.
             </p>
@@ -84,33 +83,34 @@ export default function BertrandPage() {
             </div>
           </div>
 
-          <div className="mt-14 max-w-xl border-t border-slate-200 pt-10 sm:mt-16">
-            <p className="eyebrow mb-4 text-ocean-accent">
-              REPÈRE 01 // 25 ANS
-            </p>
-            <h2 className="font-display text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+          <div className="mt-14 max-w-xl border-t border-border pt-10 sm:mt-16">
+            <p className="eyebrow mb-4">REPÈRE 01 // 25 ANS</p>
+            <h2 className="font-display text-3xl tracking-tight text-ocean-navy sm:text-4xl">
               25 ans de voile professionnelle sur tous supports
             </h2>
-            <p className="mt-4 text-lg leading-relaxed text-slate-600">
+            <p className="mt-4 text-lg leading-relaxed text-text-secondary">
               Monocoque, multicoque, foils · Équipage, solitaire, double.
             </p>
           </div>
 
           <div className="mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
             {stats.map((s) => (
-              <Block key={s.label} tone="ocean">
-                <p className="font-display text-4xl font-semibold text-ocean-accent sm:text-5xl">
+              <div
+                key={s.label}
+                className="border border-border bg-ecume p-5 sm:p-6"
+              >
+                <p className="font-display text-4xl text-ocean-teal sm:text-5xl">
                   {s.value}
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                <p className="mt-3 text-sm leading-relaxed text-text-secondary">
                   {s.label}
                 </p>
-              </Block>
+              </div>
             ))}
           </div>
         </div>
 
-        <div className="relative min-h-[70vh] bg-ocean-navy lg:min-h-screen lg:sticky lg:top-0">
+        <div className="relative min-h-[70vh] bg-ocean-navy lg:sticky lg:top-0 lg:min-h-screen">
           <Image
             src={`${WP}/2026/10/clipboard-10.png`}
             alt="Bertrand Castelnérac à bord du Mini 747"
@@ -122,7 +122,7 @@ export default function BertrandPage() {
         </div>
       </section>
 
-      <Section className="bg-gradient-to-b from-slate-50 to-white">
+      <Section className="bg-ecume">
         <SectionHeader
           eyebrow="REPÈRE 02 // FOILS"
           title="Foils · Innovation & performance"
@@ -133,7 +133,7 @@ export default function BertrandPage() {
                 href="https://seair-platforms.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-semibold text-ocean-accent hover:underline"
+                className="font-semibold text-ocean-teal hover:underline"
               >
                 SEAir Platforms
               </a>
@@ -159,7 +159,7 @@ export default function BertrandPage() {
         />
       </Section>
 
-      <Section className="bg-white">
+      <Section className="bg-surface">
         <SectionHeader
           eyebrow="REPÈRE 03 // MINI"
           title="Mini · Deux Mini Transat et le premier Mini volant"
@@ -179,7 +179,7 @@ export default function BertrandPage() {
         />
       </Section>
 
-      <Section className="bg-slate-50">
+      <Section className="bg-ecume">
         <SectionHeader
           eyebrow="REPÈRE 03 B // ÉQUIPAGE"
           title="25 ans sur les circuits de haut niveau"
@@ -198,19 +198,19 @@ export default function BertrandPage() {
         />
       </Section>
 
-      <Section className="bg-white">
+      <Section className="bg-surface">
         <SectionHeader
           eyebrow="REPÈRE 04 // CIRCUITS"
           title="Tour Voile & IRC"
         />
         <div className="mb-10">
           <div className="mb-4 flex items-baseline justify-between gap-4">
-            <h3 className="font-display text-2xl font-semibold">Tour Voile</h3>
+            <h3 className="font-display text-2xl text-ocean-navy">Tour Voile</h3>
             <a
               href="https://www.tourvoile.fr/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-semibold text-ocean-accent hover:underline"
+              className="text-sm font-semibold text-ocean-teal hover:underline"
             >
               tourvoile.fr →
             </a>
@@ -233,7 +233,7 @@ export default function BertrandPage() {
           />
         </div>
         <div>
-          <h3 className="font-display mb-4 text-2xl font-semibold">IRC</h3>
+          <h3 className="font-display mb-4 text-2xl text-ocean-navy">IRC</h3>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
               `${WP}/2026/10/clipboard-26.jpeg`,
@@ -243,7 +243,7 @@ export default function BertrandPage() {
             ].map((src, i) => (
               <div
                 key={src}
-                className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-slate-200"
+                className="relative aspect-[4/3] overflow-hidden bg-ocean-navy"
               >
                 <Image
                   src={src}
@@ -258,33 +258,31 @@ export default function BertrandPage() {
         </div>
       </Section>
 
-      <Section className="bg-gradient-to-b from-slate-50 to-white">
+      <Section className="bg-ecume">
         <SectionHeader
           eyebrow="REPÈRE 05 // ENTREPRENEUR"
           title="Entrepreneur & consultant"
           description="À la croisée du sport, de l'innovation et de l'entreprise : construire des projets de partenariat et de communication concrets."
         />
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="rule-list">
           {ventures.map((v) => (
-            <Block key={v.name}>
-              <h3 className="font-display mb-2 text-xl font-semibold">
-                {v.name}
-              </h3>
-              <p className="mb-4 text-sm text-slate-500">{v.note}</p>
+            <div key={v.name} className="py-7">
+              <h3 className="font-display text-xl text-ocean-navy">{v.name}</h3>
+              <p className="mt-2 text-sm text-text-muted">{v.note}</p>
               <a
                 href={v.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-semibold text-ocean-accent hover:underline"
+                className="mt-3 inline-block text-sm font-semibold text-ocean-teal hover:underline"
               >
                 En savoir plus →
               </a>
-            </Block>
+            </div>
           ))}
         </div>
       </Section>
 
-      <Section className="bg-white">
+      <Section className="bg-surface">
         <SectionHeader
           eyebrow="REPÈRE 06 // TRANSMISSION"
           title="Rencontres & transmission"
@@ -325,7 +323,7 @@ export default function BertrandPage() {
           ].map((photo) => (
             <div
               key={photo.file}
-              className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-slate-200"
+              className="relative aspect-[3/4] overflow-hidden bg-ocean-navy"
             >
               <Image
                 src={`${WP}/2026/10/${photo.file}`}
@@ -339,14 +337,14 @@ export default function BertrandPage() {
         </div>
       </Section>
 
-      <Section className="bg-slate-50">
+      <Section className="bg-ecume">
         <SectionHeader eyebrow="REPÈRE 07 // PRESSE" title="À la une" />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {["clipboard-30", "clipboard-31", "clipboard-32", "clipboard-33"].map(
             (file) => (
               <div
                 key={file}
-                className="relative aspect-[3/4] overflow-hidden rounded-2xl border border-slate-200 bg-white"
+                className="relative aspect-[3/4] overflow-hidden bg-surface"
               >
                 <Image
                   src={`${WP}/2026/10/${file}.jpeg`}

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
-import { Block } from "@/components/ui/Block";
 import { ContactLine } from "@/components/ui/ContactLine";
 import { mailto, WP } from "@/lib/site";
 
@@ -11,6 +10,23 @@ export const metadata: Metadata = {
   description:
     "Circuit Figaro, Solitaire et parcours de champions : découvrez le programme Élite des Héritiers du large et ses ambitions de course au large.",
 };
+
+const circuit = [
+  {
+    title: "Classe Figaro Bénéteau",
+    text: "Au cœur d'un circuit de référence.",
+    href: "https://www.classefigarobeneteau.fr/fr",
+  },
+  {
+    title: "La Solitaire du Figaro",
+    text: "Se mesurer en solitaire.",
+    href: "https://www.lasolitaire.com/",
+  },
+  {
+    title: "Double & préparation",
+    text: "Courses en double, entraînements et immersion dans la préparation.",
+  },
+];
 
 const objectifs = [
   {
@@ -62,104 +78,96 @@ export default function ElitePage() {
         }}
       />
 
-      <Section className="bg-white">
+      <Section className="bg-surface">
         <SectionHeader
           eyebrow="REPÈRE 01 // LE CIRCUIT"
           title="Le circuit, la préparation, la course"
         />
-        <div className="grid gap-5 md:grid-cols-3">
-          <Block>
-            <h3 className="font-display mb-3 text-xl font-semibold">
-              Classe Figaro Bénéteau
-            </h3>
-            <p className="mb-4 text-slate-600">
-              Au cœur d&apos;un circuit de référence.
-            </p>
-            <a
-              href="https://www.classefigarobeneteau.fr/fr"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-semibold text-ocean-accent hover:underline"
-            >
-              Découvrir →
-            </a>
-          </Block>
-          <Block>
-            <h3 className="font-display mb-3 text-xl font-semibold">
-              La Solitaire du Figaro
-            </h3>
-            <p className="mb-4 text-slate-600">Se mesurer en solitaire.</p>
-            <a
-              href="https://www.lasolitaire.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-semibold text-ocean-accent hover:underline"
-            >
-              Découvrir →
-            </a>
-          </Block>
-          <Block>
-            <h3 className="font-display mb-3 text-xl font-semibold">
-              Double & préparation
-            </h3>
-            <p className="text-slate-600">
-              Courses en double, entraînements et immersion dans la préparation.
-            </p>
-          </Block>
+        <div className="rule-list">
+          {circuit.map((item) => (
+            <div key={item.title} className="py-7">
+              <h3 className="font-display text-xl text-ocean-navy">
+                {item.title}
+              </h3>
+              <p className="mt-2 text-text-secondary">{item.text}</p>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-block text-sm font-semibold text-ocean-teal hover:underline"
+                >
+                  Découvrir →
+                </a>
+              ) : null}
+            </div>
+          ))}
         </div>
       </Section>
 
       <Section className="bg-ocean-navy text-white">
         <div className="mb-12 max-w-3xl">
-          <p className="eyebrow mb-4 text-frozen-water/70">
+          <p className="eyebrow mb-4 !text-white/55">
             CAP // OBJECTIFS SPORTIFS — 2027
           </p>
-          <h2 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h2 className="font-display text-3xl tracking-tight sm:text-4xl">
             Un programme à faire grandir ensemble
           </h2>
         </div>
-        <div className="grid gap-5 md:grid-cols-3">
-          {objectifs.map((o) => (
-            <Block key={o.title} tone="dark" className="border-white/15">
-              <h3 className="font-display mb-3 text-xl font-semibold">
-                {o.title}
-              </h3>
-              <p className="text-white/75 leading-relaxed">{o.text}</p>
-            </Block>
+        <ol className="rule-list border-white/15 max-w-3xl [&_*]:border-white/15">
+          {objectifs.map((o, i) => (
+            <li
+              key={o.title}
+              className="grid grid-cols-[3.5rem_1fr] gap-4 py-7 sm:gap-6"
+            >
+              <span className="eyebrow pt-1 !text-ocean-teal">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="font-display text-xl">{o.title}</h3>
+                <p className="mt-2 text-white/70 leading-relaxed">{o.text}</p>
+              </div>
+            </li>
           ))}
-        </div>
-        <p className="mt-8 text-sm text-white/60">
-          Horizons à terme : <strong className="text-white">Route du Rhum 2030</strong>,
-          puis <strong className="text-white">Vendée Globe 2032</strong>.
-          Programme proposé, à construire avec les partenaires.
+        </ol>
+        <p className="mt-8 max-w-2xl text-sm text-white/55">
+          Horizons à terme :{" "}
+          <strong className="text-white">Route du Rhum 2030</strong>, puis{" "}
+          <strong className="text-white">Vendée Globe 2032</strong>. Programme
+          proposé, à construire avec les partenaires.
         </p>
       </Section>
 
-      <Section className="bg-gradient-to-b from-slate-50 to-white">
+      <Section className="bg-ecume">
         <SectionHeader
           eyebrow="LA FABRIQUE DES CHAMPIONS"
           title="Le Figaro révèle les grands noms du large"
           description="Avant de gagner un tour du monde, ils ont couru la Solitaire du Figaro."
         />
-        <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+        <div className="overflow-hidden border border-border bg-surface">
           <table className="w-full text-left text-sm">
-            <thead className="border-b border-slate-200 bg-slate-50 text-ocean-accent">
+            <thead className="border-b border-border bg-ecume">
               <tr>
-                <th className="px-5 py-4 font-semibold">Marin</th>
-                <th className="px-5 py-4 font-semibold">Solitaire</th>
-                <th className="hidden px-5 py-4 font-semibold sm:table-cell">
+                <th className="eyebrow px-5 py-4 !text-ocean-teal">Marin</th>
+                <th className="eyebrow px-5 py-4 !text-ocean-teal">Solitaire</th>
+                <th className="eyebrow hidden px-5 py-4 !text-ocean-teal sm:table-cell">
                   Vendée Globe
                 </th>
               </tr>
             </thead>
             <tbody>
               {champions.map((c) => (
-                <tr key={c.name} className="border-b border-slate-100 last:border-0">
-                  <td className="px-5 py-4 font-medium text-slate-900">
+                <tr
+                  key={c.name}
+                  className="border-b border-border last:border-0"
+                >
+                  <td className="px-5 py-4 font-medium text-ocean-navy">
                     {c.name}
                   </td>
-                  <td className="px-5 py-4 text-slate-600">{c.solitaire}</td>
-                  <td className="hidden px-5 py-4 text-slate-600 sm:table-cell">
+                  <td className="px-5 py-4 text-text-secondary">
+                    {c.solitaire}
+                  </td>
+                  <td className="hidden px-5 py-4 text-text-secondary sm:table-cell">
                     {c.vendee}
                   </td>
                 </tr>
@@ -167,14 +175,14 @@ export default function ElitePage() {
             </tbody>
           </table>
         </div>
-        <p className="mt-4 text-sm text-slate-500">
+        <p className="mt-4 text-sm text-text-muted">
           Soutenir un talent aujourd&apos;hui. Accompagner une histoire qui
           grandit.
         </p>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="mt-12 grid gap-8 md:grid-cols-2">
           <figure>
-            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-slate-200">
+            <div className="relative aspect-[16/10] overflow-hidden bg-ocean-navy">
               <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Macif_sant%C3%A9_pr%C3%A9voyance_Imoca_%C3%A0_Lorient_-_The_Transat_CIC_2024_01.jpg"
                 alt="IMOCA Macif santé prévoyance à Lorient"
@@ -183,12 +191,12 @@ export default function ElitePage() {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <figcaption className="mt-3 text-xs text-slate-500">
+            <figcaption className="photo-credit mt-3">
               IMOCA · Le tour du monde — crédit Jug81 (CC BY-SA 4.0)
             </figcaption>
           </figure>
           <figure>
-            <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-slate-200">
+            <div className="relative aspect-[16/10] overflow-hidden bg-ocean-navy">
               <Image
                 src="https://upload.wikimedia.org/wikipedia/commons/e/e2/TheTransat24_Class40_01.jpg"
                 alt="Flotte Class40 à Lorient avant The Transat 2024"
@@ -197,28 +205,28 @@ export default function ElitePage() {
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            <figcaption className="mt-3 text-xs text-slate-500">
+            <figcaption className="photo-credit mt-3">
               Class40 · Les grandes traversées — crédit MFonzatti (CC BY-SA 4.0)
             </figcaption>
           </figure>
         </div>
-        <p className="mt-4 text-xs text-slate-500">
+        <p className="mt-4 text-xs text-text-muted">
           Parcours historiques cités à titre d&apos;illustration. Ces marins ne
           sont pas présentés comme partenaires du projet.
         </p>
       </Section>
 
-      <Section className="bg-white">
+      <Section className="bg-surface">
         <SectionHeader
           eyebrow="REPÈRE 03 // GRANDES ROUTES"
           title="Les grandes routes du large"
         />
-        <div className="grid gap-6 md:grid-cols-2">
-          <Block>
-            <h3 className="font-display mb-3 text-2xl font-semibold">
+        <div className="rule-list">
+          <div className="py-8">
+            <h3 className="font-display text-2xl text-ocean-navy">
               Route du Rhum
             </h3>
-            <p className="mb-4 text-slate-600 leading-relaxed">
+            <p className="mt-3 max-w-xl text-text-secondary leading-relaxed">
               La grande traversée en solitaire : un horizon pour faire grandir
               un projet sportif.
             </p>
@@ -226,16 +234,16 @@ export default function ElitePage() {
               href="https://www.routedurhum.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-semibold text-ocean-accent hover:underline"
+              className="mt-4 inline-block text-sm font-semibold text-ocean-teal hover:underline"
             >
               routedurhum.com →
             </a>
-          </Block>
-          <Block>
-            <h3 className="font-display mb-3 text-2xl font-semibold">
+          </div>
+          <div className="py-8">
+            <h3 className="font-display text-2xl text-ocean-navy">
               Vendée Globe
             </h3>
-            <p className="mb-4 text-slate-600 leading-relaxed">
+            <p className="mt-3 max-w-xl text-text-secondary leading-relaxed">
               Le tour du monde comme horizon de la course au large et de ses
               parcours de champions.
             </p>
@@ -243,11 +251,11 @@ export default function ElitePage() {
               href="https://www.vendeeglobe.org/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-semibold text-ocean-accent hover:underline"
+              className="mt-4 inline-block text-sm font-semibold text-ocean-teal hover:underline"
             >
               vendeeglobe.org →
             </a>
-          </Block>
+          </div>
         </div>
         <ContactLine label="Soutenir le programme Élite" />
       </Section>

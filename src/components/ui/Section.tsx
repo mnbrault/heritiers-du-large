@@ -15,7 +15,7 @@ export function Section({
   narrow?: boolean;
 }) {
   return (
-    <section id={id} className={`py-20 sm:py-28 ${className}`}>
+    <section id={id} className={`py-16 sm:py-24 ${className}`}>
       <Container size={narrow ? "narrow" : "default"} className={containerClassName}>
         {children}
       </Container>
@@ -36,20 +36,14 @@ export function SectionHeader({
 }) {
   return (
     <div
-      className={`mb-12 sm:mb-16 ${align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}`}
+      className={`mb-10 sm:mb-14 ${align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-2xl"}`}
     >
-      {eyebrow ? (
-        <p
-          className={`eyebrow mb-4 text-ocean-accent ${align === "center" ? "" : ""}`}
-        >
-          {eyebrow}
-        </p>
-      ) : null}
-      <h2 className="font-display text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+      {eyebrow ? <p className="eyebrow mb-4">{eyebrow}</p> : null}
+      <h2 className="font-display text-3xl tracking-tight text-ocean-navy sm:text-4xl">
         {title}
       </h2>
       {description ? (
-        <p className="mt-4 text-lg leading-relaxed text-slate-600">
+        <p className="mt-4 text-lg leading-relaxed text-text-secondary">
           {description}
         </p>
       ) : null}

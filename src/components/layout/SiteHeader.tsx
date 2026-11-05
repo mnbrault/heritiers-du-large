@@ -1,25 +1,9 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 import StaggeredMenu from "./StaggeredMenu";
 import { NAV, SITE, mailto } from "@/lib/site";
 
 export function SiteHeader() {
-  const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
-  const isHome = pathname === "/";
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const lightOnHero = isHome && !scrolled;
-  const buttonColor = lightOnHero ? "#ffffff" : "#0a1628";
-
   const items = [
     ...NAV.map((item) => ({
       label: item.label,
@@ -48,14 +32,12 @@ export function SiteHeader() {
         { label: "Facebook", link: SITE.facebook },
         { label: "Email", link: mailto() },
       ]}
-      colors={["#1e3a5f", "#0d9488", "#0a1628"]}
-      accentColor="#38bdf8"
-      menuButtonColor={buttonColor}
+      colors={["#0a1628", "#0d9488", "#0a1628"]}
+      accentColor="#0d9488"
+      menuButtonColor="#0a1628"
       openMenuButtonColor="#ffffff"
       changeMenuColorOnOpen
-      headerBottomExtra={
-        <p className="sm-tagline">{SITE.tagline}</p>
-      }
+      headerBottomExtra={<p className="sm-tagline">{SITE.tagline}</p>}
     />
   );
 }

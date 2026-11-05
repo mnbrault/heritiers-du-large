@@ -6,11 +6,11 @@ export function ContactLine({
   label?: string;
 }) {
   return (
-    <p className="eyebrow pt-8 text-slate-500">
+    <p className="eyebrow pt-12 text-[0.68rem]">
       CONTACT // {label} :{" "}
       <a
         href={mailto(label)}
-        className="text-ocean-accent transition-colors hover:text-blue-700"
+        className="text-ocean-teal transition-colors hover:text-ocean-navy"
       >
         Bertrand Castelnérac ↗
       </a>
