@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { PageHero } from "@/components/ui/PageHero";
 import { Section, SectionHeader } from "@/components/ui/Section";
 import { Block } from "@/components/ui/Block";
+import { Button } from "@/components/ui/Button";
 import { ContactLine } from "@/components/ui/ContactLine";
 import { mailto, WP } from "@/lib/site";
 
@@ -67,38 +67,60 @@ function Gallery({
 export default function BertrandPage() {
   return (
     <>
-      <PageHero
-        title="Bertrand Castelnérac"
-        description="Skipper professionnel, entrepreneur et conseil auprès des entreprises."
-        cta={{
-          href: mailto("Échangeons sur votre projet"),
-          label: "Échangeons sur votre projet ↗",
-        }}
-        image={{
-          src: `${WP}/2026/10/clipboard-10.png`,
-          alt: "Bertrand Castelnérac à bord du Mini 747",
-        }}
-      />
+      <section className="border-b border-slate-200 bg-white lg:grid lg:min-h-screen lg:grid-cols-2">
+        <div className="flex flex-col justify-center px-6 pb-14 pt-32 sm:px-8 sm:pb-16 sm:pt-36 lg:px-12 xl:px-16">
+          <div className="max-w-xl">
+            <h1 className="font-display text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+              Bertrand Castelnérac
+            </h1>
+            <p className="mt-5 text-lg leading-relaxed text-slate-600 sm:text-xl">
+              Skipper professionnel, entrepreneur et conseil auprès des
+              entreprises.
+            </p>
+            <div className="mt-8">
+              <Button href={mailto("Échangeons sur votre projet")}>
+                Échangeons sur votre projet ↗
+              </Button>
+            </div>
+          </div>
 
-      <Section className="bg-white">
-        <SectionHeader
-          eyebrow="REPÈRE 01 // 25 ANS"
-          title="25 ans de voile professionnelle sur tous supports"
-          description="Monocoque, multicoque, foils · Équipage, solitaire, double."
-        />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((s) => (
-            <Block key={s.label} tone="ocean">
-              <p className="font-display text-5xl font-semibold text-ocean-accent">
-                {s.value}
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600">
-                {s.label}
-              </p>
-            </Block>
-          ))}
+          <div className="mt-14 max-w-xl border-t border-slate-200 pt-10 sm:mt-16">
+            <p className="eyebrow mb-4 text-ocean-accent">
+              REPÈRE 01 // 25 ANS
+            </p>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+              25 ans de voile professionnelle sur tous supports
+            </h2>
+            <p className="mt-4 text-lg leading-relaxed text-slate-600">
+              Monocoque, multicoque, foils · Équipage, solitaire, double.
+            </p>
+          </div>
+
+          <div className="mt-10 grid max-w-3xl gap-4 sm:grid-cols-2">
+            {stats.map((s) => (
+              <Block key={s.label} tone="ocean">
+                <p className="font-display text-4xl font-semibold text-ocean-accent sm:text-5xl">
+                  {s.value}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  {s.label}
+                </p>
+              </Block>
+            ))}
+          </div>
         </div>
-      </Section>
+
+        <div className="relative min-h-[70vh] bg-ocean-navy lg:min-h-screen lg:sticky lg:top-0">
+          <Image
+            src={`${WP}/2026/10/clipboard-10.png`}
+            alt="Bertrand Castelnérac à bord du Mini 747"
+            fill
+            priority
+            className="object-cover object-[center_18%]"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+          />
+        </div>
+      </section>
 
       <Section className="bg-gradient-to-b from-slate-50 to-white">
         <SectionHeader
