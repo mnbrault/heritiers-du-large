@@ -2,7 +2,9 @@ import type { NextConfig } from "next";
 
 const isGithubPages = process.env.GITHUB_PAGES === "true";
 const repoName = "heritiers-du-large";
-const basePath = isGithubPages ? `/${repoName}` : "";
+/** Extra path segment for side-by-side deploys, e.g. "/v2" */
+const versionPath = process.env.PAGES_VERSION_PATH || "";
+const basePath = isGithubPages ? `/${repoName}${versionPath}` : "";
 
 const nextConfig: NextConfig = {
   output: "export",
