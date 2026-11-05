@@ -2,7 +2,7 @@ name: Deploy GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, redesign-v2]
   workflow_dispatch:
 
 permissions:
@@ -18,30 +18,51 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
-      - name: Install
-        run: npm ci
+      - name: Checkout V1 (main)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: v1
 
-      - name: Build static site
-        run: npm run build
+      - name: Checkout V2 (redesign-v2)
+        uses: actions/checkout@v4
+        with:
+          ref: redesign-v2
+          path: v2
+
+      - name: Install & build V1
+        working-directory: v1
+        run: |
+          npm ci
+          npm run build
         env:
           GITHUB_PAGES: "true"
 
-      - name: Add .nojekyll
-        run: touch out/.nojekyll
+      - name: Install & build V2
+        working-directory: v2
+        run: |
+          npm ci
+          npm run build
+        env:
+          GITHUB_PAGES: "true"
+          PAGES_VERSION_PATH: "/v2"
+
+      - name: Assemble both versions
+        run: |
+          mkdir -p site/v2
+          cp -a v1/out/. site/
+          cp -a v2/out/. site/v2/
+          touch site/.nojekyll
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out
+          path: site
 
   deploy:
     needs: build
